@@ -77,3 +77,6 @@ uv run dbt clean                 # Remove generated dbt artifacts
 
 With the current development profile, the models are created as views in the
 configured target schema.
+
+
+Updating a single line to check the git tracking
