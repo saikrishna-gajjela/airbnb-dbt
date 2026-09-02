@@ -1,0 +1,5 @@
+{
+  "dbt.dbtIntegration": "core",
+  "dbt.dbtPythonPathOverride": "/Users/saikrishnagajjela/Desktop/airbnb-dbt/.venv/bin/python",
+  "python.defaultInterpreterPath": "/Users/saikrishnagajjela/Desktop/airbnb-dbt/.venv/bin/python"
+}

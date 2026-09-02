@@ -16,3 +16,4 @@ logs/
 
 *.pem
 rsa_private_key.p8
+profiles.yml
