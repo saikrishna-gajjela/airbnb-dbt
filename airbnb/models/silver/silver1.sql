@@ -1,0 +1,1 @@
+select * from airbnb.source.bronze_listings
