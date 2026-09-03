@@ -1,1 +1,4 @@
-select * from airbnb.source.bronze_listings
+{{ config(materialized='table') }}
+
+select *
+from {{ ref('bronze_listings') }}
