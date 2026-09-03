@@ -1,8 +1,8 @@
 # Airbnb dbt Project
 
 A small dbt project that transforms Airbnb source data in Snowflake. The
-current models form a bronze layer by exposing the source bookings, hosts, and
-listings tables as dbt-managed views.
+current models expose the source bookings, hosts, and listings data through a
+bronze layer and build a silver listings table from the bronze model.
 
 ## Tech stack
 
@@ -19,11 +19,15 @@ listings tables as dbt-managed views.
 └── airbnb/
     ├── dbt_project.yml
     ├── packages.yml
-    └── models/
-        └── bronze/
-            ├── bronze_bookings.sql
-            ├── bronze_hosts.sql
-            └── bronze_listings.sql
+        └── models/
+            ├── bronze/
+            │   ├── bronze_bookings.sql
+            │   ├── bronze_hosts.sql
+            │   └── bronze_listings.sql
+            ├── silver/
+            │   └── silver1.sql
+            └── gold/
+                └── gold1.sql
 ```
 
 The bronze models currently read from these Snowflake relations:
@@ -33,6 +37,9 @@ The bronze models currently read from these Snowflake relations:
 | `bronze_bookings` | `AIRBNB.SOURCE.BOOKINGS` |
 | `bronze_hosts` | `AIRBNB.SOURCE.HOSTS` |
 | `bronze_listings` | `AIRBNB.SOURCE.LISTINGS` |
+
+The `silver1` model selects from `bronze_listings` and is explicitly
+materialized as a table.
 
 ## Setup
 
@@ -72,11 +79,12 @@ Other useful commands:
 ```bash
 uv run dbt parse                 # Validate and parse the project
 uv run dbt run --select path:models/bronze  # Run the bronze models
+uv run dbt run --select silver1             # Build the silver table
 uv run dbt clean                 # Remove generated dbt artifacts
 ```
 
-With the current development profile, the models are created as views in the
-configured target schema.
+Bronze models are created as views, while `silver1` is created as a table in
+the configured target schema.
 
 
 Updating a single line to check the git tracking
