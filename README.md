@@ -88,3 +88,5 @@ the configured target schema.
 
 
 Updating a single line to check the git tracking
+
+created several models and updated with git at the same time
